@@ -7,12 +7,6 @@ pipeline {
     }
 
     stages {
-        stage('Clone') {
-            steps {
-                git 'https://github.com/GAUTAMKUMARYADAV100/ShareIndexWebApp.git'
-            }
-        }
-
         stage('Install Frontend') {
             steps {
                 sh 'npm install --prefix $FRONTEND_DIR'
