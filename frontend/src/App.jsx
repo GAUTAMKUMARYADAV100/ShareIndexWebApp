@@ -11,10 +11,10 @@ function App() {
     <ThemeProvider>
       <Router>
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
-          loda
+          
           <Navbar />
           <main className="container mx-auto px-4 py-8">
-            loda
+            
             <Routes>
               <Route path="/" element={<Dashboard />} />
             </Routes>
