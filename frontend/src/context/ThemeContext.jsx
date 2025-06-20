@@ -1,4 +1,4 @@
-// client/src/context/ThemeContext.js
+// client/src/context/ThemeContext.js just a comment
 import React, { createContext, useState, useEffect } from 'react';
 
 export const ThemeContext = createContext();
