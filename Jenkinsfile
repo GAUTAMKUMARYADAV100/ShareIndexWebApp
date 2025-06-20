@@ -65,6 +65,7 @@ pipeline {
         stage('Deploy Monitoring Stack') {
             steps {
                 dir("$MONITORING_DIR") {
+                    sh 'docker rm -f graphite grafana || true'
                     sh 'docker-compose up -d'
                 }
             }
