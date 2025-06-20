@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  graphite:
+    image: graphiteapp/graphite-statsd
+    container_name: graphite
+    ports:
+      - "8081:80"        # Graphite web UI
+      - "8125:8125/udp"  # StatsD port for metrics
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3001:3000"      # Grafana UI
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - graphite
+    restart: unless-stopped

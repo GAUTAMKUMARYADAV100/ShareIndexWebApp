@@ -4,6 +4,7 @@ pipeline {
     environment {
         FRONTEND_DIR = 'frontend'
         BACKEND_DIR = 'backend'
+        MONITORING_DIR = 'monitoring'
     }
 
     stages {
@@ -59,6 +60,14 @@ pipeline {
             sh 'docker-compose down || true'
             sh 'docker-compose up -d'
           }
+        }
+
+        stage('Deploy Monitoring Stack') {
+            steps {
+                dir("$MONITORING_DIR") {
+                    sh 'docker-compose up -d'
+                }
+            }
         }
 
     }
