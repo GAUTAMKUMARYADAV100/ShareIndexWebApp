@@ -2,13 +2,17 @@ version: '3.3'
 
 services:
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+    image: theresonator/ipo-backend:latest
     ports:
       - "5050:5000"
     restart: unless-stopped
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+    image: theresonator/ipo-frontend:latest
     ports:
       - "8085:80"
     depends_on:

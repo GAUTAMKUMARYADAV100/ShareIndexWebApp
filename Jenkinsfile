@@ -30,6 +30,18 @@ pipeline {
                 sh 'docker-compose build'
             }
         }
+        stage('Push to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'theresonator', passwordVariable: 'dckr_pat_oJPVPDc2JPmo9GcRiaaXgwySrF4')]) {
+                sh """
+                    echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                    docker push theresonator/ipo-backend:latest
+                    docker push theresonator/ipo-frontend:latest
+                """
+                }
+            }
+        }
+
 
         stage('Deploy') {
           steps {
