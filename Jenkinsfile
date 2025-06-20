@@ -30,6 +30,15 @@ pipeline {
                 sh 'docker-compose build'
             }
         }
+
+        stage('Provision with Ansible') {
+            steps {
+                sh 'ansible-playbook ansible/install.yml -i localhost,'
+            }
+        }
+
+
+
         stage('Push to Docker Hub') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
