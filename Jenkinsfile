@@ -31,11 +31,12 @@ pipeline {
             }
         }
 
-        stage('Provision with Ansible') {
+       stage('Provision with Ansible') {
             steps {
-                sh 'ansible-playbook ansible/install.yml -i localhost,'
+                sh 'ansible-playbook ansible/install.yml -i localhost, --connection=local'
             }
         }
+
 
 
 
